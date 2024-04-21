@@ -20,7 +20,7 @@ public class DocenteEntity {
     @Column(name = "data_entrada", nullable = false)
     private LocalDateTime dataEntrada;
 
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_usuario")
     private UsuarioEntity usuario;
 
