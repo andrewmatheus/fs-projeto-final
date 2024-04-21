@@ -13,7 +13,7 @@ public class PapelEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "nome", nullable = false, unique = true)
     @Enumerated(EnumType.STRING)
     private Papeis nome;
 
