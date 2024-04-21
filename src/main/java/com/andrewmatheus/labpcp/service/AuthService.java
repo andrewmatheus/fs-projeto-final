@@ -45,6 +45,7 @@ public class AuthService implements AuthServiceI {
         }
 
         Instant now = Instant.now();
+        Long idUsuario = usuarioEntity.get().getId();
 
         String scope = usuarioEntity.get().getPapel().toString();
 
@@ -52,8 +53,9 @@ public class AuthService implements AuthServiceI {
                 .issuer("labPCP")
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(TEMPO_EXPIRACAO))
-                .subject(usuarioEntity.get().getId().toString())
+                .subject(idUsuario.toString())
                 .claim("scope", scope)
+                .claim("userId", idUsuario)
                 .build();
 
         var valorJWT = jwtEncoder.encode(
@@ -76,5 +78,13 @@ public class AuthService implements AuthServiceI {
         int startIndex = papel.indexOf("nome=") + 5;
         int endIndex = papel.indexOf(")", startIndex);
         return papel.substring(startIndex, endIndex);
+    }
+
+    public String buscaCampoUserIdToken(String token) {
+        return jwtDecoder
+                .decode(token)
+                .getClaims()
+                .get("userId")
+                .toString();
     }
 }
