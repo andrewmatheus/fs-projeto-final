@@ -127,9 +127,7 @@ public class CursoService implements CursoServiceI {
         log.info("Iniciando verificação de autenticação!");
         String papelToken =  authService.buscaCampoToken(token, "scope");
 
-        if (!papelToken.equalsIgnoreCase("ADM") &&
-                !papelToken.equalsIgnoreCase("PEDAGOGICO")
-        )  {
+        if (!papelToken.equalsIgnoreCase("ADM"))  {
             log.error("Usuario não tem acesso a essa funcionalidade!");
             throw new GenericException("Usuario não tem acesso a essa funcionalidade", HttpStatus.UNAUTHORIZED);
         }
