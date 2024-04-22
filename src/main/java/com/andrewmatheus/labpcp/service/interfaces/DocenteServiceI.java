@@ -2,7 +2,6 @@ package com.andrewmatheus.labpcp.service.interfaces;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CadastrarDocenteRequest;
 import com.andrewmatheus.labpcp.datasource.entity.DocenteEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

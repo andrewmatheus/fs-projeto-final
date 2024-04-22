@@ -1,5 +1,6 @@
 package com.andrewmatheus.labpcp.datasource.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,6 +25,7 @@ public class TurmaEntity {
     @JoinColumn(name = "id_docente", nullable = false)
     private DocenteEntity professor;
 
+    @JsonIgnoreProperties("turmas")
     @ManyToOne
     @JoinColumn(name = "id_curso", nullable = false)
     private CursoEntity curso;
