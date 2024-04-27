@@ -121,7 +121,14 @@ public class TurmaService implements TurmaServiceI {
 
     @Override
     public void removerTurmaPorId(Long id, String token) {
-        verifyPermmision(token);
+        log.info("Iniciando verificação de autenticação!");
+        String papelToken =  authService.buscaCampoToken(token, "scope");
+
+        if (!papelToken.equalsIgnoreCase("ADM")
+        )  {
+            log.error("Usuario não tem acesso a essa funcionalidade!");
+            throw new RuntimeException("Usuario não tem acesso a essa funcionalidade");
+        }
 
         log.info("Buscando turma por ID!");
         Optional<TurmaEntity> turma = turmaRepository.findById(id);

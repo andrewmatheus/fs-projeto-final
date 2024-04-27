@@ -1,8 +1,12 @@
 package com.andrewmatheus.labpcp.controller;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CursoRequest;
+import com.andrewmatheus.labpcp.controller.dto.Response.AlunoResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.CursoResponse;
+import com.andrewmatheus.labpcp.controller.dto.Response.MateriaResponse;
+import com.andrewmatheus.labpcp.datasource.entity.AlunoEntity;
 import com.andrewmatheus.labpcp.datasource.entity.CursoEntity;
+import com.andrewmatheus.labpcp.datasource.entity.MateriaEntity;
 import com.andrewmatheus.labpcp.exceptions.GenericException;
 import com.andrewmatheus.labpcp.service.CursoService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -64,6 +70,36 @@ public class CursoController {
                     curso.getNome()
                 )
             );
+        } catch (GenericException e) {
+            return ResponseEntity.status(e.getStatus()).body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/{id}/materias")
+    public ResponseEntity buscaMateriasCursoId(
+            @PathVariable Long id,
+            @RequestHeader(name = "Authorization") String token
+    ) {
+        try {
+            CursoEntity curso = cursoService.buscaCursoPorId(id, token.substring(7));
+
+            List<MateriaEntity> materias = curso.getMaterias();
+
+            List<MateriaResponse> materiaResponse = new ArrayList<>();
+
+            for (MateriaEntity materia : materias) {
+                materiaResponse.add(new MateriaResponse(
+                        materia.getNome(),
+                        materia.getCurso().getNome(),
+                        "Id do curso:" + materia.getCurso().getId()
+                ));
+            }
+
+            if (!materiaResponse.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK).body(materiaResponse);
+            }
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhuma matéria foi encontrada!");
         } catch (GenericException e) {
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());
         }
