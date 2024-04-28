@@ -1,7 +1,6 @@
 package com.andrewmatheus.labpcp.service;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CadastrarNotasRequest;
-import com.andrewmatheus.labpcp.controller.dto.Response.AlunoResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.NotaResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.PontuacaoResponse;
 import com.andrewmatheus.labpcp.datasource.entity.*;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

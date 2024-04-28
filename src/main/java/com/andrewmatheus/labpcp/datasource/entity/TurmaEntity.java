@@ -3,7 +3,6 @@ package com.andrewmatheus.labpcp.datasource.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 

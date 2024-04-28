@@ -1,11 +1,9 @@
 package com.andrewmatheus.labpcp.service.interfaces;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CadastrarNotasRequest;
-import com.andrewmatheus.labpcp.controller.dto.Request.CadastrarTurmaRequest;
 import com.andrewmatheus.labpcp.controller.dto.Response.NotaResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.PontuacaoResponse;
 import com.andrewmatheus.labpcp.datasource.entity.NotasEntity;
-import com.andrewmatheus.labpcp.datasource.entity.TurmaEntity;
 
 import java.util.List;
 
