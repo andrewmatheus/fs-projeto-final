@@ -3,6 +3,7 @@ package com.andrewmatheus.labpcp.datasource.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -16,7 +17,9 @@ public class MateriaEntity {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @JsonIgnoreProperties("materias")
+//    @ToString.Exclude
+//    @JsonIgnoreProperties("materias")
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "id_curso", nullable = false)
     private CursoEntity curso;
