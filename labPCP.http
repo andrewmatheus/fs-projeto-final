@@ -1,0 +1,306 @@
+# labPCP
+
+###
+# group: login
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "login": "administrador",
+  "senha": "123456"
+}
+
+// {
+//     "login": "pedagogico",
+//     "senha": "123456"
+// }
+
+// {
+//     "login": "recruiter",
+//     "senha": "123456"
+// }
+
+###
+# group: usuario
+# @name criar usuario
+POST {{baseUrl}}/cadastro
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "login": "recruiter",
+  "senha": "123456",
+  "papel": "RECRUITER"
+}
+
+###
+# group: Docente
+# @name criar docente
+POST {{baseUrl}}/docentes
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Joe due novo",
+  "dataEntrada": "2024-04-21T18:35:00"
+}
+
+###
+# group: Docente
+# @name Atualizar docente
+PUT {{baseUrl}}/docentes/3
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Joe due atualizado",
+  "dataEntrada": "2024-04-21T15:35:00"
+}
+
+###
+# group: Docente
+# @name Deletar Docente
+DELETE {{baseUrl}}/docentes/2
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Docente
+# @name buscar docente por id
+GET {{baseUrl}}/docentes/3
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Docente
+# @name buscar todos os docentes
+GET {{baseUrl}}/docentes
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Curso
+# @name criar curso
+POST {{baseUrl}}/cursos
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Sistemas de informação 3"
+}
+
+###
+# group: Curso
+# @name Atualizar curso
+PUT {{baseUrl}}/cursos/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Odontologia"
+}
+
+###
+# group: Curso
+# @name Deletar Curso
+DELETE {{baseUrl}}/cursos/12
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Curso
+# @name buscar curso por id
+GET {{baseUrl}}/cursos/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Curso
+# @name buscar todos os cursos
+GET {{baseUrl}}/cursos
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Materia
+# @name criar materia
+POST {{baseUrl}}/materias
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Geografia",
+  "id_curso": 2
+}
+
+###
+# group: Materia
+# @name Atualizar materia
+PUT {{baseUrl}}/materias/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Português",
+  "id_curso": 2
+}
+
+###
+# group: Materia
+# @name Deletar Materia
+DELETE {{baseUrl}}/materias/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Materia
+# @name buscar materia por id
+GET {{baseUrl}}/materias/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Materia
+# @name buscar todos os materias
+GET {{baseUrl}}/materias
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Materia
+# @name buscar materias por curso
+GET {{baseUrl}}/cursos/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Turma
+# @name criar turma
+POST {{baseUrl}}/turmas
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "turma 4",
+  "id_docente": 3,
+  "id_curso": 3
+}
+
+###
+# group: Turma
+# @name Atualizar turma
+PUT {{baseUrl}}/materias/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Português",
+  "id_curso": 2
+}
+
+###
+# group: Turma
+# @name Deletar turma
+DELETE {{baseUrl}}/turmas/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Turma
+# @name buscar turma por id
+GET {{baseUrl}}/turmas/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Turma
+# @name buscar todos os turmas
+GET {{baseUrl}}/turmas
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Aluno
+# @name criar aluno
+POST {{baseUrl}}/alunos
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Surama",
+  "dataNascimento": "2024-04-27T18:35:00",
+  "id_usuario": 6,
+  "id_turma": 2
+}
+
+###
+# group: Aluno
+# @name Atualizar aluno
+PUT {{baseUrl}}/alunos/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "nome": "Miguel atualizado",
+  "dataNascimento": "2014-01-21T12:35:00",
+  "id_usuario": 5,
+  "id_turma": 2
+}
+
+###
+# group: Aluno
+# @name Deletar aluno
+DELETE {{baseUrl}}/alunos/3
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Aluno
+# @name buscar aluno por id
+GET {{baseUrl}}/alunos/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Aluno
+# @name buscar todos os alunos
+GET {{baseUrl}}/alunos
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Notas
+# @name criar nota
+POST {{baseUrl}}/notas
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "id_aluno": 1,
+  "id_professor": 3,
+  "id_materia": 2,
+  "valor": 5
+}
+
+###
+# group: Notas
+# @name Atualizar notas
+PUT {{baseUrl}}/notas/2
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "id_aluno": 1,
+  "id_professor": 3,
+  "id_materia": 2,
+  "valor": 10
+}
+
+###
+# group: Notas
+# @name Deletar nota
+DELETE {{baseUrl}}/notas/3
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Notas
+# @name buscar nota por id
+GET {{baseUrl}}/notas/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Notas
+# @name buscar todos as notas do aluno
+GET {{baseUrl}}/notas/alunos/1/notas
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###
+# group: Notas
+# @name buscar pontuacao do aluno
+GET {{baseUrl}}/notas/alunos/1/pontuacao
+Authorization: Bearer {{ADMIN_TOKEN}}
