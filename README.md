@@ -1,24 +1,6 @@
-# fs-projeto-final
- final project of the java spring back end course. FullStack-Floripa-mais-tech
-
 <h1 align="center">
   LabPCP: API para Gestão Educacional
 </h1>  
-
-<p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/andrewmatheus/fs-projeto-final.svg">
-
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/andrewmatheus/fs-projeto-final.svg">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/andrewmatheus/fs-projeto-final.svg">
-  <a href="https://github.com/andrewmatheus/fs-projeto-final/commits/main">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/andrewmatheus/fs-projeto-final.svg">
-  </a>
-
-  <a href="https://github.com/andrewmatheus/fs-projeto-final/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/andrewmatheus/fs-projeto-final.svg">
-  </a>  
-</p>
 
 <p align="center">
   <a href="#notebook-Sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -89,7 +71,7 @@ o environment variables corretamente em seu projeto para permanecer dinamicament
 - Controle de Segurança: [Spring Security](https://docs.spring.io/spring-security/reference/index.html)
 - [Docker](https://docs.docker.com/)
 
-### Estrutura do Projeto
+#### Estrutura do Projeto
 
 A estrutura do projeto segue o padrão MVC (Model-View-Controller), com a seguinte organização:
 
@@ -97,11 +79,11 @@ A estrutura do projeto segue o padrão MVC (Model-View-Controller), com a seguin
 - **Service**: Responsável pela lógica de negócio da aplicação, realiza chamadas aos repositórios.
 - **Repository**: Responsável pela comunicação com o banco de dados.
 
-### Segurança
+#### Segurança
 
 A segurança da aplicação é garantida pelo Spring Security, onde cada usuário possui um token JWT (JSON Web Token) para acesso aos dados.
 
-## :hammer: Melhorias
+#### Melhorias
 
 - Implementação de testes automatizados.
 - Ajuste em retornos endpoint com lista de acordo com melhor encaixe no projeto front end na próxima etapa.
