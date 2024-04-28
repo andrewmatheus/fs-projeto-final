@@ -73,7 +73,11 @@ public class TurmaController {
         try {
             TurmaEntity turma = turmaService.buscaTurmaPorId(id, token.substring(7));
 
-            return ResponseEntity.status(HttpStatus.OK).body(turma);
+            return ResponseEntity.status(HttpStatus.OK).body(new TurmaResponse(
+                    turma.getNome(),
+                    turma.getCurso().getNome(),
+                    turma.getProfessor().getNome()
+            ));
 
         } catch (GenericException e) {
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());
