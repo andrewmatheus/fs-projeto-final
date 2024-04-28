@@ -1,6 +1,8 @@
 package com.andrewmatheus.labpcp.service;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CadastrarNotasRequest;
+import com.andrewmatheus.labpcp.controller.dto.Response.AlunoResponse;
+import com.andrewmatheus.labpcp.controller.dto.Response.NotaResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.PontuacaoResponse;
 import com.andrewmatheus.labpcp.datasource.entity.*;
 import com.andrewmatheus.labpcp.datasource.repository.AlunoRepository;
@@ -15,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -144,8 +148,34 @@ public class NotaService implements NotaServiceI {
     }
 
     @Override
-    public List<NotasEntity> buscaNotasPorAluno(Long id, String token) {
-        return List.of();
+    public List<NotaResponse> buscaNotasPorAluno(Long id, String token) {
+        log.info("Iniciando busca do aluno!");
+        Optional<AlunoEntity> alunoEncontrado = alunoRepository.findById(id);
+
+        if (alunoEncontrado.isEmpty()) {
+            log.error("Aluno não encontrado!");
+            throw new GenericException("Aluno não encontrado!", HttpStatus.NOT_FOUND);
+        }
+
+        log.info("Iniciando busca de notas do aluno!");
+        List<NotasEntity> notasDoAluno = notaRepository.findAllByIdAluno(alunoEncontrado.get().getId());
+
+        if (notasDoAluno.isEmpty()) {
+            log.info("Aluno não possui notas cadastradas pontuação mínima!");
+            throw new GenericException("Aluno não possui notas cadastradas!", HttpStatus.NOT_FOUND);
+        }
+
+        List<NotaResponse> notasResponseList = new ArrayList<>();
+
+        for (NotasEntity nota : notasDoAluno) {
+            notasResponseList.add(new NotaResponse(
+                    alunoEncontrado.get().getNome(),
+                    nota.getValor(),
+                    nota.getData().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            ));
+        }
+
+        return notasResponseList;
     }
 
     @Override
@@ -175,7 +205,7 @@ public class NotaService implements NotaServiceI {
                 .sum();
 
         Double notaTotal = (somaNotas * 100 / notasDoAluno.size()) / 100;
-
+        log.info("Retornando soma total das notas do aluno!");
         return new PontuacaoResponse(
                 alunoEncontrado.get().getNome(),
                 notaTotal

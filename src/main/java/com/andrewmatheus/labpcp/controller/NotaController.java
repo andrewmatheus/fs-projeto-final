@@ -1,6 +1,7 @@
 package com.andrewmatheus.labpcp.controller;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CadastrarNotasRequest;
+import com.andrewmatheus.labpcp.controller.dto.Response.AlunoResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.NotaResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.PontuacaoResponse;
 import com.andrewmatheus.labpcp.datasource.entity.AlunoEntity;
@@ -69,10 +70,13 @@ public class NotaController {
             @RequestHeader(name = "Authorization") String token
     ) {
         try {
-            PontuacaoResponse responsePontuacao = notaService.buscarPontuacaoPorAluno(id, token.substring(7));
+            List<NotaResponse> notasResponse = notaService.buscaNotasPorAluno(id, token.substring(7));
 
-            return ResponseEntity.status(HttpStatus.OK).body(responsePontuacao);
+            if (!notasResponse.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK).body(notasResponse);
+            }
 
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aluno não possui notas cadastradas!");
         } catch (GenericException e) {
             return ResponseEntity.status(e.getStatus()).body(e.getMessage());
         }
