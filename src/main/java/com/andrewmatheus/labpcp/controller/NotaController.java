@@ -1,7 +1,6 @@
 package com.andrewmatheus.labpcp.controller;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CadastrarNotasRequest;
-import com.andrewmatheus.labpcp.controller.dto.Response.AlunoResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.NotaResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.PontuacaoResponse;
 import com.andrewmatheus.labpcp.datasource.entity.AlunoEntity;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

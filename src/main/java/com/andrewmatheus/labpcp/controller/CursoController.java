@@ -1,10 +1,8 @@
 package com.andrewmatheus.labpcp.controller;
 
 import com.andrewmatheus.labpcp.controller.dto.Request.CursoRequest;
-import com.andrewmatheus.labpcp.controller.dto.Response.AlunoResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.CursoResponse;
 import com.andrewmatheus.labpcp.controller.dto.Response.MateriaResponse;
-import com.andrewmatheus.labpcp.datasource.entity.AlunoEntity;
 import com.andrewmatheus.labpcp.datasource.entity.CursoEntity;
 import com.andrewmatheus.labpcp.datasource.entity.MateriaEntity;
 import com.andrewmatheus.labpcp.exceptions.GenericException;
@@ -15,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +44,16 @@ public class CursoController {
     ) {
         try {
             List<CursoEntity> cursos = cursoService.buscaTodos(token.substring(7));
+            List<CursoResponse> cursoResponse = new ArrayList<>();
 
-            if (!cursos.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.OK).body(cursos);
+            for (CursoEntity curso : cursos) {
+                cursoResponse.add(new CursoResponse(
+                    curso.getNome()
+                ));
+            }
+
+            if (!cursoResponse.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK).body(cursoResponse);
             }
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum curso não foi cadastrado!");
